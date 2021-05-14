@@ -19,18 +19,17 @@ namespace WeaponCamViewController
             Tick += OnTick;
         }
 
-
         private Task OnTick()
         {
             if (LocalPlayer.Character.Weapons.Current != null &&
                 LocalPlayer.Character.Weapons.Current.Hash != WeaponHash.Unarmed &&
                 LocalPlayer.Character.Weapons.Current.AmmoType != AmmoType.Melee)
             {
-                if (LocalPlayer.Character.CurrentVehicle != null && LocalPlayer.IsAiming && API.GetFollowVehicleCamViewMode() != 4)
+                if (LocalPlayer.Character.CurrentVehicle != null && LocalPlayer.Character.IsAiming && API.GetFollowVehicleCamViewMode() != 4)
                 {
                     API.SetFollowVehicleCamViewMode(4);
                 }
-                else if(API.GetFollowPedCamViewMode() != 4)
+                else if (LocalPlayer.Character.CurrentVehicle == null && API.GetFollowPedCamViewMode() != 4)
                 {
                     API.SetFollowPedCamViewMode(4);
                 }
